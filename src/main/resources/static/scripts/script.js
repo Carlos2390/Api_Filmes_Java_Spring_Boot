@@ -17,32 +17,6 @@ function listarFilmes() {
 // Inicializar a página listando os filmes
 listarFilmes();
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Adicione um evento de submissão ao formulário de pesquisa
-    const formPesquisa = document.getElementById('formPesquisa');
-    formPesquisa.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Lógica para obter o valor da pesquisa
-        const nomeFilme = formPesquisa.inputPesquisa.value;
-
-        // Lógica para fazer uma requisição fetch à API para obter os filmes que correspondem à pesquisa
-        fetch(`/api/filmes?nome=${nomeFilme}`)
-            .then(response => response.json())
-            .then(filmesPesquisados => {
-                // Lógica para preencher a lista de filmes com os resultados da pesquisa
-                const listaFilmes = document.getElementById('listaFilmes');
-                listaFilmes.innerHTML = '';
-
-                filmesPesquisados.forEach(filme => {
-                    // Lógica para criar e adicionar cards de filmes à lista
-                    const card = criarCardFilme(filme);
-                    listaFilmes.appendChild(card);
-                });
-            })
-            .catch(error => console.error('Erro ao pesquisar filmes:', error));
-    });
-});
 
 // Função para criar um card de filme
 function criarCardFilme(filme) {
